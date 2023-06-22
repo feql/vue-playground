@@ -32,3 +32,18 @@ npm run build
 ```sh
 npm run lint
 ```
+
+### Roadmap
+
+* Configuration Tab
+    -> baseurl
+    -> Token
+         - gen token btn
+         - popup to login 
+* Queries Tab
+    -> Saved queries 
+    -> Query Input
+    -> Query Output
+    -> Errors Tab
+
+
