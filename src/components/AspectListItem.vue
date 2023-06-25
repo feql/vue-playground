@@ -1,5 +1,5 @@
 <template>
-    <li  class="flex flex-col py-4 gap-x-4 bg-gray-100">
+    <li  class="flex flex-col py-4 gap-x-4 bg-gray-100" :class="{'hover:bg-zinc-200 cursor-pointer ':aspect.type=='navigational'}" @click="onClickAspectListItem" >
         <div class="flex flex-row justify-between items-end " v-if="aspect.type=='text'">
             <div class="ml-2 flex flex-row items-center">
                 <slot name="icon"></slot>
@@ -30,12 +30,21 @@
                 <Switch />
             </div>
         </div>
+        <div class="flex flex-row justify-between items-end " v-if="aspect.type=='navigational'">
+            <div class="ml-2 flex flex-row items-center">
+                <slot name="icon"></slot>
+                <span class="ml-1 text-sm font-bold">{{aspect.title}}</span>
+            </div>
+            <div class="mr-2">
+                <ChevronRightIcon size="20" class="h-4 w-4 text-gray-400" aria-hidden="true" />
+            </div>
+        </div>
     </li>
 </template>
 
 
 <script>
-import { PencilSquareIcon, Square2StackIcon, RectangleGroupIcon } from '@heroicons/vue/24/solid'
+import { PencilSquareIcon, Square2StackIcon, RectangleGroupIcon, ChevronRightIcon } from '@heroicons/vue/24/solid'
 import Switch from './Switch.vue'
 
 export default {
@@ -43,6 +52,7 @@ export default {
     PencilSquareIcon,
     Square2StackIcon,
     RectangleGroupIcon,
+    ChevronRightIcon,
     Switch
   },
   props: {
@@ -62,6 +72,11 @@ export default {
     }
   },
   methods: {
+    onClickAspectListItem(){
+        if(this.aspect.type == "navigational"){
+            this.$emit("on-navigate", this.aspect);
+        }
+    }
   }
 }
 </script>

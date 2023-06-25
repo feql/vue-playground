@@ -41,7 +41,9 @@
         </div>
       </div>
       <ul role="list" class="flex-grow flex-nowrap h-[0px] overflow-y-auto divide-y divide-gray-200 w-full  bg-red-400" style="heights: 0px;">
-        <AspectListItem  v-for="(aspect, aspectKey) in aspectsRef" :key="aspectKey" :aspect="aspect"  >
+        <AspectListItem  v-for="(aspect, aspectKey) in aspectsRef" :key="aspectKey" 
+            :aspect="aspect"  
+            @on-navigate="e => onNavigateAspect(e, aspectKey)" >
           <template v-slot:icon>
             {{index}}
             <GlobeEuropeAfricaIcon size="20" class="h-4 w-4 text-gray-400" aria-hidden="true" />
@@ -96,7 +98,8 @@ import {
   GlobeEuropeAfricaIcon,
   RectangleGroupIcon,
   CircleStackIcon,
-  TableCellsIcon
+  TableCellsIcon,
+  ChevronRightIcon
 } from '@heroicons/vue/24/solid'
 import AspectListItem from './AspectListItem.vue'
 export default {
@@ -107,7 +110,8 @@ export default {
     RectangleGroupIcon,
     CircleStackIcon,
     AspectListItem,
-    TableCellsIcon
+    TableCellsIcon,
+    ChevronRightIcon
   },
   data() {
     return {
@@ -117,21 +121,6 @@ export default {
         { name: 'Production', href: '#', current: false }
       ],
       aspectsRef: {
-        tables: {
-          title: 'Tables',
-          type: 'text',
-          value: ''
-        },
-        queries: {
-          title: 'Queries Sandbox',
-          type: 'text',
-          value: ''
-        },
-        baseUrl: {
-          title: 'Base URL',
-          type: 'text',
-          value: 'https://gitlab.com/graciao-graciao/beeapp'
-        },
         isMultitenant: {
           title: 'Has Multi-Tenance',
           type: 'boolean',
@@ -141,6 +130,26 @@ export default {
           title: 'Selected Database',
           type: 'text',
           value: 'akili-sabrina-spur'
+        },
+        tables: {
+          title: 'Tables',
+          type: 'navigational',
+          value: ''
+        },
+        queries: {
+          title: 'Queries Sandbox',
+          type: 'navigational',
+          value: ''
+        },
+        seeds: {
+          title: 'Seeds',
+          type: 'navigational',
+          value: ''
+        },
+        baseUrl: {
+          title: 'Base URL',
+          type: 'text',
+          value: 'https://gitlab.com/graciao-graciao/beeapp'
         },
         jwToken: {
           title: 'Auth Token',
@@ -155,15 +164,21 @@ export default {
         },
         migrations: {
           title: 'Migrations',
-          type: 'text',
+          type: 'navigational',
           value: ''
         }
-      }
+      },
     }
   },
   methods: {
     onClickProjectListItem(project, index) {
       this.activeIndex = index
+    },
+    onNavigateAspect(aspect, aspectKey){
+        this.$emit("on-navigate", {
+            aspect: aspect,
+            aspectKey: aspectKey
+        });
     }
   }
 }

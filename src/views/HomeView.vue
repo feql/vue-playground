@@ -1,24 +1,44 @@
 <template>
   <div class="flex flex-row w-screen justify-center h-full">
-    <ProjectsPanelVue />
-    <ProjectAspectsPanelVue />
+    <ProjectsPanel />
+    <ProjectAspectsPanel
+      @on-navigate="onNavigateAspect" 
+    />
+    <!-- dynamic column panels -->
+    <TablesAspectPanel v-if="currentAspectKey == 'tables'"/>
+    <QueriesAspectPanel v-if="currentAspectKey == 'queries'"/>
+    <MigrationsAspectPanel v-if="currentAspectKey == 'migrations'"/>
+    <SeedsAspectPanel v-if="currentAspectKey == 'seeds'"/>
   </div>
 </template>
 
 <script>
-import ProjectAspectsPanelVue from '../components/ProjectAspectsPanel.vue'
-import ProjectsPanelVue from '../components/ProjectsPanel.vue'
+import ProjectsPanel from '../components/ProjectsPanel.vue'
+import ProjectAspectsPanel from '../components/ProjectAspectsPanel.vue'
+import TablesAspectPanel from '../components/TablesAspectPanel.vue'
+import QueriesAspectPanel from '../components/QueriesAspectPanel.vue'
+import MigrationsAspectPanel from '../components/MigrationsAspectPanel.vue'
+import SeedsAspectPanel from '../components/SeedsAspectPanel.vue'
+
 
 export default {
   components: {
-    ProjectsPanelVue,
-    ProjectAspectsPanelVue
+    ProjectsPanel,
+    ProjectAspectsPanel,
+    TablesAspectPanel,
+    QueriesAspectPanel,
+    MigrationsAspectPanel,
+    SeedsAspectPanel
   },
   data() {
     return {
+      currentAspectKey: "",
     }
   },
   methods: {
+    onNavigateAspect(eventData){
+        this.currentAspectKey = eventData.aspectKey;
+    }
   }
 }
 </script>
