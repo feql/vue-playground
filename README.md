@@ -46,4 +46,12 @@ npm run lint
     -> Query Output
     -> Errors Tab
 
+### Highlights 
+
+* ***Dynamically Rendering Icon***
+  //nyd: the part where we create a component on the fly
+
+* ***Scrolling A flex-grow div***
+  //nyd: Making the aspects scrollable using flex
+
 
