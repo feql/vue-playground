@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row w-screen justify-center h-full">
+  <div class="flex flex-row w-screen justify-center h-full bg-red-400">
     <ProjectsPanel />
     <ProjectAspectsPanel
       @on-navigate="onNavigateAspect" 

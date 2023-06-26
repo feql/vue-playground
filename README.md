@@ -51,11 +51,17 @@ npm run lint
     -> Query Output
     -> Errors Tab
 
+### Backlog
+
+* Restoring a database to a migration, within a given enviromnrt context
+
 ### Tasks
 
-* Navigational Aspect Rows
+* 00033 - Navigational Aspect Rows
  
   When clicked it should open the next associated panel
+
+* 00032 - Tables Aspect Panel
 
 ### Highlights - the subtle things you cannot miss
 

@@ -15,7 +15,7 @@ import { RouterLink, RouterView } from 'vue-router'
         </div>
       </div>
     </header>
-    <main class="flex flex-col flex-grow bg-slate-800 p-4 h-screen pt-[60px]">
+    <main class="flex flex-col flex-grow bg-slate-800 pb-4 pt-[46px] h-screen ">
       <RouterView />
     </main>
   </div>

@@ -121,6 +121,11 @@ export default {
         { name: 'Production', href: '#', current: false }
       ],
       aspectsRef: {
+        isAutoCreateTables: {
+          title: 'Auto Creates Tables',
+          type: 'boolean',
+          value: 'https://gitlab.com/graciao-gracia/beeapp'
+        },
         isMultitenant: {
           title: 'Has Multi-Tenance',
           type: 'boolean',
@@ -138,6 +143,16 @@ export default {
         },
         queries: {
           title: 'Queries Sandbox',
+          type: 'navigational',
+          value: ''
+        },
+        functions: {
+          title: 'Server Side Functions',
+          type: 'navigational',
+          value: ''
+        },
+        files: {
+          title: 'Self Hosted Files',
           type: 'navigational',
           value: ''
         },
@@ -166,6 +181,11 @@ export default {
           title: 'Migrations',
           type: 'navigational',
           value: ''
+        },
+        integrations: {
+          title: 'Integrated Services',
+          type: 'navigational',
+          value: 'email, sms, mobile money etc'
         }
       },
     }
