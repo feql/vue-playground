@@ -1,7 +1,7 @@
 <template>
   <div
     class="flex flex-col border-r border-gray-400 rounded-sm bg-slate-300 divide-y divide-gray-500"
-    :class="'w-6/12'"
+    :class="'w-7/12'"
   >
     <div class="flex flex-row justify-between items-center">
       <span class="p-2">Tables</span>
@@ -45,8 +45,9 @@
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-200 bg-white">
-            <tr v-for="(column,index) in table.columns" :key="index">
-              <td class="whitespace-nowrap py-1 px-2 text-sm font-medium text-gray-900 w-[250px]">
+            <tr v-for="(column,index) in table.columns" :key="index" >
+              <td class="whitespace-nowrap py-1 px-2 text-sm font-medium text-gray-900 w-[250px]  " 
+                :class="{'rounded-bl-lg': index == (table.columns.length -1)}">
                 <div class="flex flex-row justify-between items-center">
                   <div class="flex flex-row ">
                     {{ column?.name }}
@@ -62,7 +63,8 @@
                   {{ column?.description }}
                 </div>
               </td>
-              <td class="relative whitespace-nowrap py-1 pl-3 pr-4 text-right text-sm font-medium  w-[50px]">
+              <td class="relative whitespace-nowrap py-1 pl-3 pr-4 text-right text-sm font-medium  w-[50px]"
+                :class="{'rounded-br-lg': index == (table.columns.length -1)}" >
                 <a href="#" class="text-indigo-600 hover:text-indigo-900"
                   v-if="column?.isEngineColumn"
                   >Edit</a

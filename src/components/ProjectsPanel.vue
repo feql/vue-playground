@@ -1,7 +1,7 @@
 <template>
     <div
       class="flex flex-col border-r border-gray-400 rounded-sm bg-slate-300 divide-y divide-gray-500"
-      :class="'w-3/12'"
+      :class="'w-2/12'"
     >
       <div class="flex flex-row justify-between items-center">
         <span class="p-2">Projects</span>
