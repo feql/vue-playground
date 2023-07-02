@@ -4,7 +4,7 @@
     :class="'w-3/12'"
   >
     <div class="flex flex-row justify-between items-center">
-      <span class="px-2 py-3">Aspects</span>
+      <span class="px-2 py-3 font-bold">Aspects</span>
     </div>
     <div class="flex flex-grow flex-col">
       <div class="px-2">
@@ -13,7 +13,7 @@
           <select
             id="tabs"
             name="tabs"
-            class="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+            class="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base sm:text-sm"
           >
             <option v-for="tab in tabs" :key="tab.name" :selected="tab.current">
               {{ tab.name }}
