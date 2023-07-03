@@ -11,6 +11,9 @@ import { RouterLink, RouterView } from 'vue-router'
           <nav class="flex flex-row items-center gap-3">
             <RouterLink to="/">Home</RouterLink>
             <RouterLink to="/about">About</RouterLink>
+            <a href="https://github.com/prettier/prettier" target="_blank">
+              <img alt="Vue logo" class="logo mr-12" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)" />
+            </a>
           </nav>
         </div>
       </div>

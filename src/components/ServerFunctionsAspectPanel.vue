@@ -104,6 +104,14 @@
 
 
 <script>
+
+import ace from 'ace-builds';
+import modePhpUrl from 'ace-builds/src-noconflict/mode-php?url';
+ace.config.setModuleUrl('ace/mode/php', modePhpUrl);
+
+import prettier from "prettier/standalone";
+import phpPlugin from "@prettier/plugin-php/standalone";
+
 import { PlusIcon, TableCellsIcon, RectangleGroupIcon, BarsArrowUpIcon, MagnifyingGlassIcon, PlayIcon, PencilIcon } from '@heroicons/vue/24/solid'
 import { VAceEditor } from 'vue3-ace-editor';
 
@@ -124,7 +132,7 @@ export default {
         {
           id: 1,
           name: 'delete_items',
-          content: "<?php\nfunction !12x12!(){\n/*Write your php server side function logic here*/\n}\n?>",
+          content: "<?php function !12x12!(){ /*Write your php server side function logic here*/ } ?>",
           hasErrors: false,
           errors: [],
           isBeforeReturn: false
@@ -132,7 +140,7 @@ export default {
         {
           id: 2,
           name: 'dependence_report',
-          content: "<?php\nfunction !12x12!(){\n/*Write your php server side function logic here*/\n}\n?>",
+          content: "<?php function !12x12!(){\n/*Write your php server side function logic here*/ } ?>",
           hasErrors: false,
           errors: [],
           isBeforeReturn: false
@@ -140,19 +148,26 @@ export default {
         {
           id: 3,
           name: 'process_stock_count',
-          content: "<?php\nfunction !12x12!(){\n/*Write your php server side function logic here*/\n}\n?>",
+          content: "<?php function !12x12!(){\n/*Write your php server side function logic here*/ } ?>",
           hasErrors: false,
           errors: [],
           isBeforeReturn: false
         }
       ],
       activeIndex: -1,
-      codeEditorContent: "<?php\n/*Select a function from the left*/\n?>",
+      codeEditorContent: "<?php /*Select a function from the left*/ ?>",
     }
   },
   methods: {
     onClickQueryListItem(query, index) {
-      this.codeEditorContent = query.content.replace("!12x12!", query.name);
+
+       let code = query.content.replace("!12x12!", query.name);
+      let formatedCode = prettier.format(code, {
+        semi: false, 
+        plugins: [phpPlugin],
+        parser: "php"
+      });
+      this.codeEditorContent = formatedCode;
       this.activeIndex = index;
     }
   }

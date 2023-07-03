@@ -98,6 +98,9 @@ import ace from 'ace-builds';
 import modeJavascriptUrl from 'ace-builds/src-noconflict/mode-javascript?url';
 ace.config.setModuleUrl('ace/mode/javascript', modeJavascriptUrl);
 
+import prettier from "prettier/standalone";
+import parserBabel from "prettier/parser-babel";
+
 import { PlusIcon, TableCellsIcon, RectangleGroupIcon, BarsArrowUpIcon, MagnifyingGlassIcon, PlayIcon, TrashIcon } from '@heroicons/vue/24/solid'
 import { VAceEditor } from 'vue3-ace-editor';
 
@@ -360,13 +363,21 @@ export default {
         ]
       },
       activeKey: "",
-      codeEditorContent: "<?php\n/*Select a function from the left*/\n?>",
+      codeEditorContent: "",
       
     }
   },
   methods: {
     onClickSeedListItem(seed, tableName) {
-      this.codeEditorContent = JSON.stringify(this.seeds[tableName]);
+      let code = JSON.stringify(this.seeds[tableName]);
+      let formatedCode = prettier.format(code, {
+        semi: false, 
+        parser: "babel",
+        plugins: [parserBabel],
+      });
+      formatedCode= formatedCode.substring(1).trim(); // remove the comma
+      console.log(formatedCode);
+      this.codeEditorContent = formatedCode;
       this.activeKey = tableName;
     }
   }
