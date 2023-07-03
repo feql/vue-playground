@@ -68,7 +68,7 @@
             @init="editorInit"
             lang="javascript"
             theme="monokai"
-            style="height: Calc(100vh - 145px)" />
+            style="height: Calc(100vh - 159px)" />
         </div>
         <div class="bg-[#f0f0f0] pl-10 flex flex-row ">
           <div class="flex flex-row flex-grow items-center justify-between">
