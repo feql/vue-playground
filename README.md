@@ -81,3 +81,6 @@ npm run lint
 
   //nyd: These keep trcuk of the order of opening panels and clearly some history, like a binary tree algorithm
 
+
+* Migrations *
+Migrations - downgrading losses data 
