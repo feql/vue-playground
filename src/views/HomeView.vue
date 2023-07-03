@@ -9,6 +9,7 @@
     <QueriesAspectPanel v-if="currentAspectKey == 'queries'"/>
     <MigrationsAspectPanel v-if="currentAspectKey == 'migrations'"/>
     <SeedsAspectPanel v-if="currentAspectKey == 'seeds'"/>
+    <ServerFunctionsAspectPanel v-if="currentAspectKey == 'functions'"/>
   </div>
 </template>
 
@@ -19,6 +20,7 @@ import TablesAspectPanel from '../components/TablesAspectPanel.vue'
 import QueriesAspectPanel from '../components/QueriesAspectPanel.vue'
 import MigrationsAspectPanel from '../components/MigrationsAspectPanel.vue'
 import SeedsAspectPanel from '../components/SeedsAspectPanel.vue'
+import ServerFunctionsAspectPanel from '../components/ServerFunctionsAspectPanel.vue'
 
 
 export default {
@@ -28,7 +30,8 @@ export default {
     TablesAspectPanel,
     QueriesAspectPanel,
     MigrationsAspectPanel,
-    SeedsAspectPanel
+    SeedsAspectPanel,
+    ServerFunctionsAspectPanel
   },
   data() {
     return {
