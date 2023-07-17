@@ -1,7 +1,7 @@
 <template>
     <div
       class="flex flex-col border-r border-gray-400 rounded-sm bg-slate-300 divide-y divide-gray-500"
-      :class="'w-2/12'"
+      :class="activeIndex < 0?'w-4/12': 'w-2/12'"
     >
       <div class="flex flex-row justify-between items-center">
         <span class="p-2 font-bold">Projects</span>
@@ -90,7 +90,8 @@ export default {
   },
   methods: {
     onClickProjectListItem(project, index) {
-      this.activeIndex = index
+      this.activeIndex = index,
+      this.$emit('select-project', {project, index})
     }
   }
 }

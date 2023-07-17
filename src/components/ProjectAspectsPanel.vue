@@ -49,42 +49,6 @@
             <GlobeEuropeAfricaIcon size="20" class="h-4 w-4 text-gray-400" aria-hidden="true" />
           </template>
         </AspectListItem>
-        <!-- <AspectListItem :aspect="aspectsRef.isMultitenant">
-          <template v-slot:icon>
-            <RectangleGroupIcon size="20" class="h-4 w-4 text-gray-400" aria-hidden="true" />
-          </template>
-        </AspectListItem>
-        <AspectListItem :aspect="aspectsRef.selectedDatabase">
-          <template v-slot:icon>
-            <CircleStackIcon size="20" class="h-4 w-4 text-gray-400" aria-hidden="true" />
-          </template>
-        </AspectListItem>
-        <AspectListItem :aspect="aspectsRef.jwToken">
-          <template v-slot:icon>
-            <KeyIcon size="20" class="h-4 w-4 text-gray-400" aria-hidden="true" />
-          </template>
-        </AspectListItem>
-        <AspectListItem :aspect="aspectsRef.phpMyAdmin">
-          <template v-slot:icon>
-            <GlobeEuropeAfricaIcon size="20" class="h-4 w-4 text-gray-400" aria-hidden="true" />
-          </template>
-        </AspectListItem>
-        <AspectListItem :aspect="aspectsRef.tables">
-          <template v-slot:icon>
-            <TableCellsIcon size="20" class="h-4 w-4 text-gray-400" aria-hidden="true" />
-          </template>
-        </AspectListItem>
-        <AspectListItem :aspect="aspectsRef.queries">
-          <template v-slot:icon>
-            <GlobeEuropeAfricaIcon size="20" class="h-4 w-4 text-gray-400" aria-hidden="true" />
-          </template>
-        </AspectListItem>
-        <AspectListItem :aspect="aspectsRef.migrations">
-          <template v-slot:icon>
-            <GlobeEuropeAfricaIcon size="20" class="h-4 w-4 text-gray-400" aria-hidden="true" />
-          </template>
-        </AspectListItem> -->
-        
       </ul>
     </div>
   </div>
