@@ -5,3 +5,15 @@
 input.focus-outline-none:focus{
     box-shadow: unset;
 }
+
+.bg-fql{
+    background-color: #e30ef7;
+}
+
+.bg-fql-hover:hover{
+    background-color: #c105d2;
+}
+
+.text-fql{
+    color: #e30ef7;
+}
