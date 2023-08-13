@@ -69,7 +69,7 @@
       <div>
         <img class="mx-auto h-20 w-auto" :src="logo" alt="fql logo" />
         <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-200">
-          Sign in to your fql studio
+          Activate Your Account
         </h2>
       </div>
       <form class="space-y-6" action="#" method="POST">
@@ -77,6 +77,19 @@
           <div
             class="pointer-events-none absolute inset-0 z-10 rounded-sm ring-1 ring-inset ring-gray-300"
           />
+          <div>
+            <label for="email-address" class="sr-only">Activation Code</label>
+            <input
+              id="activation-code"
+              name="activation-code"
+              type="text"
+              autocomplete="code"
+              required=""
+              class="relative block w-full rounded-t-sm border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-100 placeholder:text-gray-400"
+              placeholder="Activation Code"
+              v-model="formData.activationCode.value"
+            />
+          </div>
           <div>
             <label for="email-address" class="sr-only">Email address</label>
             <input
@@ -88,19 +101,7 @@
               class="relative block w-full rounded-t-sm border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-100 placeholder:text-gray-400"
               placeholder="Email address"
               v-model="formData.email.value"
-            />
-          </div>
-          <div>
-            <label for="password" class="sr-only">Password</label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              autocomplete="current-password"
-              required=""
-              class="relative block w-full rounded-b-sm border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-100 placeholder:text-gray-400"
-              placeholder="Password"
-              v-model="formData.password.value"
+              disabled
             />
           </div>
         </div>
@@ -111,27 +112,20 @@
             class="flex w-full justify-center rounded-sm bg-fql px-3 py-1.5 text-sm font-semibold leading-6 text-white bg-fql-hover"
             @click="onSubmit"
           >
-            Sign in
+            Activate Account 
           </button>
         </div>
 
         <div class="flex items-center justify-between">
-          <!-- <div class="flex items-center">
-                <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 rounded-sm border-gray-300 text-indigo-600 focus:ring-indigo-600" />
-                <label for="remember-me" class="ml-3 block text-sm leading-6 text-gray-200">Remember me</label>
-            </div> -->
-
           <div class="text-sm leading-6">
-            <a href="#" class="font-normal text-purple-300 hover:text-indigo-300"
-              >Forgot password?</a
-            >
+            &nbsp;
           </div>
 
           <p class="text-left text-sm leading-6x text-gray-300">
-            Have no account?
+            Already have an account?
             {{ ' ' }}
-            <a href="/register" class="font-semibold text-purple-300 hover:text-indigo-400"
-              >Signup
+            <a href="/" class="font-semibold text-purple-300 hover:text-indigo-400"
+              >Login
             </a>
           </p>
         </div>
@@ -171,6 +165,22 @@ import feq from '@feql/feq'
 
 let getFormData = function(){
   return {
+    activationCode: {
+      errors: [],
+      value: "",
+      isValid: null,
+      validations: {
+        required: "Activation code is required",
+        length: {
+          value: 150,
+          error: "Cannot be more than 150 digits"
+        },
+        minLength: {
+          value: 1,
+          error: "Atleast 1 digit is required"
+        }
+      }
+    },
     email: {
       errors: [],
       value: "",
@@ -187,30 +197,10 @@ let getFormData = function(){
         },
         emailFormat: "Invalid email address"
       }
-    },
-    password: {
-      errors: [],
-      value: "",
-      isValid: null,
-      validations: {
-        required: {
-          trim: false,
-          error: "Password is required"
-        },
-        maxLength: {
-          value: 15,
-          trim: false,
-          error: "Cannot be more than 15 letters"
-        },
-        minLength: {
-          value: 6,
-          trim: false,
-          error: "Atleast 6 letters are required"
-        }
-      }
     }
   }
 }
+
 
 export default {
   components: {
@@ -242,6 +232,7 @@ export default {
         vm.nextScene += 1
         vm.playNext()
       }, scene.duration)
+      
     },
     onGoToExample: function(num){
         var vm = this;
@@ -259,30 +250,23 @@ export default {
     },
     onSubmit: function(){
       let vm  = this;
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      localStorage.removeItem("config");
       const query = { 
-        _f_login: {
-          email: vm.formData.email.value,
-          password: vm.formData.password.value
-        }
+        _f_activate: {
+          code: vm.formData.activationCode.value
+        } 
       };
       feq.post(query)
       .then((res)=>{
-        localStorage.setItem("token", res._f_login.token);
-        localStorage.setItem("user", JSON.stringify(res._f_login.user));
-        localStorage.setItem("config", JSON.stringify(res._f_login.config));
-        vm.$router.push(`/studio`);
+        console.log('results', res);
+        vm.$router.push(`/`);
         vm.formData = getFormData();
       }).catch((errors)=>{
-        console.log('errors login', errors);
+        console.log('errors activation', errors);
       });
     }
-
-    
   },
   mounted() {
+
     var vm = this
     vm.scenes = [
       {
@@ -359,7 +343,10 @@ export default {
         duration: 100
       }
     ]
-    vm.playNext()
+    vm.playNext();
+
+    const email = this.$route.query.email;
+    this.formData.email.value = email;
   }
 }
 </script>

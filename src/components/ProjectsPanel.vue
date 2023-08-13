@@ -8,6 +8,7 @@
         <button
           type="button"
           class="mr-2 my-2 inline-flex items-center gap-x-1.5 rounded-sm px-2.5 py-1.5 text-sm font-semibold text-slate-900 shadow-md bg-zinc-100 hover:bg-zinc-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          @click="onShowCreateProject"
         >
           <PlusIcon size="20" class="-ml-0.5 h-5 w-5" aria-hidden="true" />
           Create Project
@@ -47,17 +48,23 @@
           </li>
         </ul>
       </div>
+      <CreateProject v-if="showCreateProject" @close="showCreateProject=false"  />
     </div>
 </template>
 
 
 <script>
-import { PlusIcon, TableCellsIcon, RectangleGroupIcon } from '@heroicons/vue/24/solid'
+import { PlusIcon, TableCellsIcon, RectangleGroupIcon, XMarkIcon } from '@heroicons/vue/24/solid'
+import Modal from "./Modal.vue"
+import CreateProject from './CreateProject.vue'
 export default {
   components: {
     PlusIcon,
     TableCellsIcon,
-    RectangleGroupIcon
+    RectangleGroupIcon,
+    Modal,
+    XMarkIcon,
+    CreateProject
   },
   data() {
     return {
@@ -85,13 +92,17 @@ export default {
           isMultiTenant: false
         }
       ],
-      activeIndex: -1
+      activeIndex: -1,
+      showCreateProject: false
     }
   },
   methods: {
     onClickProjectListItem(project, index) {
       this.activeIndex = index,
       this.$emit('select-project', {project, index})
+    },
+    onShowCreateProject(){
+      this.showCreateProject = true;
     }
   }
 }

@@ -84,3 +84,11 @@ npm run lint
 
 * Migrations *
 Migrations - downgrading losses data 
+
+
+
+#hostings 
+hostinger labs vps
+82.180.154.80:4002
+xyolaservices@gmail.com
+qwerty

@@ -66,6 +66,7 @@ import {
   ChevronRightIcon
 } from '@heroicons/vue/24/solid'
 import AspectListItem from './AspectListItem.vue'
+
 export default {
   components: {
     KeyIcon,
@@ -75,7 +76,7 @@ export default {
     CircleStackIcon,
     AspectListItem,
     TableCellsIcon,
-    ChevronRightIcon
+    ChevronRightIcon,
   },
   data() {
     return {
